@@ -1,42 +1,26 @@
-require('./db')
+require("./db");
+const express = require("express");
+const cors = require("cors");
 
-const express = require("express")
-const OrdersModel = require('./Model/OrdersModel')
-const cors = require("cors")
 
-const app = express()
+const OrderRouter = require("./routes/OrderRouter");
+const CollectionRouter = require("./routes/CollectionRouter");
+const ReviewRouter = require('./routes/ReviewsRouter')
+const UserSigninRouter = require('./routes/UserLogin')
+const UserSignupRouter = require('./routes/UserSignupRouter')
 
-app.use(cors())
-app.use(express.json())
 
-//read
-app.get('/orders', async (req, res) => {
-  const orders = await OrdersModel.find()
-  res.json({ orders })
-})
 
-app.post('/orders', async (req, res) => {
-    const orders = new OrdersModel(req.body)
-   const result =  await orders.save()
-   res.json ({ result })
-})
 
-app.get('/orders/:id', async (req, res)=>{
-    const id = req.params.id
-    const orders = await OrdersModel.findOne({ _id: id })
-    res.json ({ orders })
-})
 
-app.delete('/orders/:id', async (req, res)=>{
-    const id = req.params.id
-    const result = await OrdersModel.deleteOne({ _id : id })
-    res.json ({ result })
-})
+const app = express();
+app.use(cors());
+app.use(express.json());
 
-app.put('/orders/:id', async (req, res)=>{
-    const id = req.params.id
-    const orders = await OrdersModel.updateOne({ _id : id } , req.body)
-    res.json ({ orders })
-})
+app.use("/order", OrderRouter);
+app.use("/collection", CollectionRouter);
+app.use("/reviews" , ReviewRouter)
+app.use('/login', UserSigninRouter)
+app.use('/signup', UserSignupRouter)
 
-app.listen(5000, () => console.log('API Started'))
+app.listen(5000, () => console.log(" API Started"));
