@@ -6,7 +6,7 @@ const dbName = "shoes";
 MongoClient.connect(url)
 .then((conn)=>{
     const dbo = conn.db(dbName)
-    console.log("DataBase connected to orders")
+    console.log("DataBase connected to files")
   dbo.createCollection("orders")
    dbo.createCollection('collection')
  dbo.createCollection('reviews')

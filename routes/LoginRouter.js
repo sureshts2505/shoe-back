@@ -2,8 +2,8 @@ const express = require("express")
 const jwt = require("jsonwebtoken");
 
 
+const LoginModel = require("../models/LoginModel");
 
-const UserinModel = require("../models/UserinModel")
 
 
 const router = express.Router()
@@ -12,7 +12,7 @@ const router = express.Router()
 
 router.post('/' , async (req , res ) => {
      const { email , password } = req.body
-     const user = await UserinModel.findOne ({ email : email })
+     const user = await LoginModel.findOne ({ email : email })
      if (!user) {
           return  res.status(400).json({ message : "User not Found" })
 

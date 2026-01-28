@@ -6,8 +6,8 @@ const cors = require("cors");
 const OrderRouter = require("./routes/OrderRouter");
 const CollectionRouter = require("./routes/CollectionRouter");
 const ReviewRouter = require('./routes/ReviewsRouter')
-const UserSigninRouter = require('./routes/UserLogin')
-const UserSignupRouter = require('./routes/UserSignupRouter')
+const LoginRouter = require("./routes/LoginRouter")
+const SignupRouter = require('./routes/SignupRouter')
 
 
 
@@ -18,9 +18,9 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/order", OrderRouter);
-app.use("/collection", CollectionRouter);
+app.use("/collection", CollectionRouter)
 app.use("/reviews" , ReviewRouter)
-app.use('/login', UserSigninRouter)
-app.use('/signup', UserSignupRouter)
+app.use('/login', LoginRouter)
+app.use('/signup', SignupRouter)
 
 app.listen(5000, () => console.log(" API Started"));

@@ -2,7 +2,7 @@
 const express = require("express")
 
 
-const UserupModel = require("../models/UserupModel")
+const    SignupModel  = require("../models/SignupModel")
 
 
 const router = express.Router()
@@ -11,20 +11,20 @@ const router = express.Router()
 //singup - users register 
 
 router.post('/' , async (req , res) => {
-    const { email  , password , confirmpassword , name  , mobile} = req.body
+    const { email  , password , cpassword , name  , mobile} = req.body
 
-    let  exist = await UserupModel.findOne({ email: email }) 
+    let  exist = await SignupModel.findOne({ email: email }) 
     if (exist) {
         return res.status(400).json({ message : "Email already Exist"})
     }
 
-    if (password != confirmpassword) {
+    if (password != cpassword) {
         return  res.status(400).json({ message : "Password and Confirm does not Match" })
 
     }
 
-    const user = new UserupModel(req.body)
-    const result = await user.save()
+    const signup = new SignupModel(req.body)
+    const result = await signup.save()
     res.send(result)
 })
 
