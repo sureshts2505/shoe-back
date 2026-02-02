@@ -5,7 +5,7 @@ const CollectionSchema = new mongoose.Schema ({
      name : String,
     description : String,
     price : Number,
-    sizes : Number,
+    sizes : [String],
     category : String,
     meterial : String ,
     color : String
