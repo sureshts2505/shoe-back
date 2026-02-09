@@ -1,8 +1,10 @@
-
 const express = require("express")
+const OrdersModel = require("../models/OrdersModel")   
+
 
 
 const router = express.Router()
+
 //read
 router.get('/', async (req, res) => {
   const orders = await OrdersModel.find()
@@ -17,13 +19,13 @@ router.post('/', async (req, res) => {
 
 router.get('/:id', async (req, res)=>{
     const id = req.params.id
-    const orders = await OrdersModel.findOne({ _id: id })
+   const orders = await OrdersModel.findOne({ _id: id })
     res.json ({ orders })
 })
 
 router.delete('/:id', async (req, res)=>{
     const id = req.params.id
-    const result = await OrdersModel.deleteOne({ _id : id })
+    const result = await OrdersModel.deleteOne({ _id: id })
     res.json ({ result })
 })
 
