@@ -8,7 +8,9 @@ const OrdersSchema = new mongoose.Schema  ({
     size : Number,
     mobile : Number,
     street : String,
-    quantity: Number
+    quantity: Number,
+    collectionId : String,
+    Image : String
 
 
 
