@@ -7,10 +7,24 @@ const router = express.Router()
 
 //read
 
-router.get('/' , async (req, res)=>{
-    const review = await ReviewModel.find()
+router.get('/', async (req, res) => {
+  try {
+    const { collectionId } = req.query
+
+    let review
+
+    if (collectionId) {
+      review = await ReviewModel.find({ collectionId })
+    } else {
+      review = await ReviewModel.find()
+    }
+
     res.json({ review })
+  } catch (err) {
+    res.status(500).json({ error: err.message })
+  }
 })
+
 
 router.post('/', async (req, res)=>{
     const review = new ReviewModel(req.body)
