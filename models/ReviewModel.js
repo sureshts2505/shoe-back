@@ -5,6 +5,12 @@ const ReviewSchema = new mongoose.Schema ({
     email:String,
     rating : String,
     review : String,
+
+     collectionId : String,
+    collectionImage : String,
+     collectionname: String,
+    collectionprice: Number,
+
    
 })
 
